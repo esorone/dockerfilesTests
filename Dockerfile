@@ -2,6 +2,9 @@ FROM kalilinux/kali-rolling
 
 WORKDIR /media/esorone/Docker/Kali/
 
+# Setup variables
+ENV VNCPASSWORD "esorone"
+
 # change repository to https
 RUN echo "deb http://http.kali.org/kali kali-rolling main contrib non-free non-free-firmware" > /etc/apt/sources.list
 RUN apt update -q --fix-missing
