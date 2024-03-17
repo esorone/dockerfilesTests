@@ -16,13 +16,14 @@ RUN useradd -rm -d /home/esorone -s /bin/bash -g root -G sudo -u 1000 test
 #RUN  echo 'esorone:esorone' | chpasswd
 ARG SSH_USER=esorone
 RUN service ssh start
+# Copy the shell script into the container
+COPY entrypoint.sh /entrypoint.sh
 
+ENTRYPOINT ["/entrypoint.sh"]
 EXPOSE 22
 
 CMD ["/usr/sbin/sshd","-D"]
 
 
-# Copy the shell script into the container
-#COPY entrypoint.sh /entrypoint.sh
-#RUN chmod +x /entrypoint.sh
-#ENTRYPOINT [ "/entrypoint.sh" ]
+
+
