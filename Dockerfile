@@ -14,12 +14,20 @@ RUN mkdir /var/run/sshd
 RUN useradd -rm -d /home/esorone -s /bin/bash -g root -G sudo -u 1000 test 
 
 
-# Set root password for SSH access (change 'your_password' to your desired password)
-RUN echo 'esorone:esorone' | chpasswd
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
-EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
+
+# Create a new user named kali and set passwords
+RUN useradd -ms /bin/bash kali
+RUN echo 'kali:kali' | chpasswd 
+RUN echo 'root:kali' | chpasswd
+RUN echo "kali ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/kali
+RUN usermod -aG sudo kali
+
+# Run some commands at the beginning
+ENTRYPOINT service ssh restart 
+
+
+
+
 
 
 
