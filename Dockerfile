@@ -12,8 +12,9 @@ RUN apt-get install openssh-server sudo -y
 
 RUN useradd -rm -d /home/esorone -s /bin/bash -g root -G sudo -u 1000 test 
 
-#RUN  echo 'esorone:esorone' | chpasswd
 
+#RUN  echo 'esorone:esorone' | chpasswd
+ARG SSH_USER=esorone
 RUN service ssh start
 
 EXPOSE 22
