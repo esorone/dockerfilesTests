@@ -10,19 +10,16 @@ RUN apt update -q --fix-missing
 RUN apt-get install nano -y
 RUN apt-get install openssh-server sudo -y
 
+RUN mkdir /var/run/sshd
 RUN useradd -rm -d /home/esorone -s /bin/bash -g root -G sudo -u 1000 test 
 
 
-#RUN  echo 'esorone:esorone' | chpasswd
-#ARG SSH_USER=esorone
-RUN service ssh start
-# Copy the shell script into the container
-COPY entrypoint.sh /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+# Set root password for SSH access (change 'your_password' to your desired password)
+RUN echo 'esorone:esorone' | chpasswd
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 EXPOSE 22
-
-CMD ["/usr/sbin/sshd","-D"]
+CMD ["/usr/sbin/sshd", "-D"]
 
 
 
