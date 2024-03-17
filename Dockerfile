@@ -22,7 +22,8 @@ RUN echo "kali ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/kali
 RUN usermod -aG sudo kali
 
 # Run some commands at the beginning
-ENTRYPOINT ["service ssh restart"]
+ENTRYPOINT ["./enstrypoint.sh"]
+CMD service ssh restart
 
 
 
