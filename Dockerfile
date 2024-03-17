@@ -41,9 +41,9 @@ RUN echo '#!/bin/bash' >> /root/.vnc/newvnclauncher.sh
 RUN echo "/usr/bin/vncserver :1 -name vnc -geometry 1600x1200 -randr 1600x1200,1440x900,1024x768" >> /root/.vnc/newvnclauncher.sh
 RUN chmod +x /root/.vnc/newvnclauncher.sh
 
-RUN echo "[program:vncserver]" >> /etc/supervisor/conf.d/supervisord.conf
-RUN echo "command=/bin/bash /root/.vnc/newvnclauncher.sh" >> /etc/supervisor/conf.d/supervisord.conf
-RUN echo "" >> /etc/supervisor/conf.d/supervisord.conf
+#RUN echo "[program:vncserver]" >> /etc/supervisor/conf.d/supervisord.conf
+#RUN echo "command=/bin/bash /root/.vnc/newvnclauncher.sh" >> /etc/supervisor/conf.d/supervisord.conf
+#RUN echo "" >> /etc/supervisor/conf.d/supervisord.conf
 
 # start supervisor
 EXPOSE 5900
