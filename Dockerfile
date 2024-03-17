@@ -10,7 +10,7 @@ RUN apt update -q --fix-missing
 RUN apt-get install nano -y
 RUN apt-get install openssh-server sudo -y
 
-RUN mkdir /var/run/sshd
+#RUN mkdir /var/run/sshd
 RUN useradd -rm -d /home/esorone -s /bin/bash -g root -G sudo -u 1000 test 
 
 
