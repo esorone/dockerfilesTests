@@ -8,6 +8,7 @@ RUN apt update -q --fix-missing
 
 # Install Nano text editor
 RUN apt-get install nano -y
+RUN apt-get install openssh-server -y
 
 # Copy the shell script into the container
 COPY entrypoint.sh /entrypoint.sh
