@@ -26,7 +26,6 @@ RUN mkdir -p /var/run/sshd /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup VNC for supervisor
-EXPOSE 5901
 RUN mkdir -p /esorone/.vnc
 RUN apt-get install -y x11vnc
 RUN apt-get install -y xfce4 
@@ -37,9 +36,9 @@ RUN apt-get install autocutsel
 RUN x11vnc -storepasswd $VNCPASSWORD /esorone/.vnc/passwd
 RUN chmod 600 /esorone/.vnc/passwd
 
-RUN echo '#!/bin/bash' >> /esorone/.vnc/newvnclauncher.sh
-RUN echo "/usr/bin/vncserver :1 -name vnc -geometry 1600x1200 -randr 1600x1200,1440x900,1024x768" >> /esorone/.vnc/newvnclauncher.sh
-RUN chmod +x /esorone/.vnc/newvnclauncher.sh
+#RUN echo '#!/bin/bash' >> /esorone/.vnc/newvnclauncher.sh
+#RUN echo "/usr/bin/vncserver :1 -name vnc -geometry 1600x1200 -randr 1600x1200,1440x900,1024x768" >> /esorone/.vnc/newvnclauncher.sh
+#RUN chmod +x /esorone/.vnc/newvnclauncher.sh
 
 #RUN echo "[program:vncserver]" >> /etc/supervisor/conf.d/supervisord.conf
 #RUN echo "command=/bin/bash /root/.vnc/newvnclauncher.sh" >> /etc/supervisor/conf.d/supervisord.conf
