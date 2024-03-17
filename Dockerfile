@@ -9,21 +9,16 @@ RUN apt update -q --fix-missing
 # Install Nano text editor
 RUN apt-get install nano -y
 RUN apt-get install openssh-server sudo -y
+RUN apt-get install supervisor -y
 
-#RUN mkdir /var/run/sshd
+RUN mkdir -p /var/run/sshd /var/log/supervisor
+
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN useradd -rm -d /home/esorone -s /bin/bash -g root -G sudo -u 1000 test 
 
-# Create a new user named kali and set passwords
+# start supervisor
 
-RUN echo 'esorone:esorone' | chpasswd 
-# Allow SSH access
-RUN mkdir /var/run/sshd
-# Expose the SSH port
-EXPOSE 22
-# Start SSH server on container startup
-CMD ["/usr/sbin/sshd", "-D"]
-
-
+CMD ["/usr/bin/supervisord"]
 
 
 
