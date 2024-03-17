@@ -12,4 +12,4 @@ RUN apt-get install nano -y
 # Copy the shell script into the container
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-RUN ./entrypoint.sh kali_test
+ENTRYPOINT [ "/entrypoint.sh" ] kali_test
