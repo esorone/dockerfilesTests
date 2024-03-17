@@ -30,11 +30,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup VNC for supervisor
 RUN mkdir -p /esorone/.vnc
-RUN apt-get install -y x11vnc
-RUN apt-get install -y xfce4 
-RUN apt-get install -y xvfb 
-RUN apt-get install -y xfce4-terminal
-RUN apt-get install -y vnc4server
+RUN apt-get install -y xfce4 xfce4-goodies x11vnc xvfb
 RUN apt-get install autocutsel
 RUN x11vnc -storepasswd $VNCPASSWORD /esorone/.vnc/passwd
 RUN chmod 600 /esorone/.vnc/passwd
