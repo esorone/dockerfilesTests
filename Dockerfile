@@ -11,10 +11,18 @@ RUN apt-get install nano -y
 RUN apt-get install openssh-server sudo -y
 RUN apt-get install supervisor -y
 
+# Configure SSH for password login
+RUN mkdir -p /var/run/sshd
+RUN sed -i '/PasswordAuthentication no/c\PasswordAuthentication yes' /etc/ssh/sshd_config
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+# Setup default user
+RUN useradd --create-home -s /bin/bash -m esorone && echo "esorone:esorone" | chpasswd && adduser esorone sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
 RUN mkdir -p /var/run/sshd /var/log/supervisor
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-RUN useradd -rm -d /home/esoronw -s /bin/bash -g root -G sudo -u 1001 esorone
 
 # start supervisor
 
