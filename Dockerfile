@@ -14,7 +14,9 @@ RUN apt-get install supervisor -y
 RUN mkdir -p /var/run/sshd /var/log/supervisor
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-RUN useradd -rm -d /home/esorone -s /bin/bash -g root -G sudo -u 1000 test 
+RUN useradd -rm -d /home/esoronw -s /bin/bash -g root -G sudo -u 1001 esorone
+USER esorone
+WORKDIR /home/esorone
 
 # start supervisor
 
