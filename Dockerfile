@@ -30,7 +30,7 @@ RUN mkdir -p /var/run/sshd /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup VNC for supervisor
-RUN mkdir -p /esorone/.vnc
+RUN mkdir -p /home/esorone/.vnc
 RUN apt-get install -y xfce4 xfce4-goodies x11vnc xvfb
 RUN apt-get install autocutsel
 RUN x11vnc -storepasswd $VNCPASSWORD /home/esorone/.vnc/passwd
