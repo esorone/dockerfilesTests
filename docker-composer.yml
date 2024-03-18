@@ -1,7 +1,7 @@
 version: '3'
 services:
   esor-kali:
-    image: esor-kali-vnc-ssh:latest
+    image: esor-kali-ssh-vnc:latest
     tty: true
     container_name: esorone-kali-shh-vnc
     hostname: esor-kali
