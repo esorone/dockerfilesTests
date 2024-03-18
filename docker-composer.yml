@@ -1,26 +1,14 @@
 version: '3'
-networks:
-  my-ntwk:
-    ipam:
-      config:
-        - subnet: 172.17.0.0/24
 services:
-  f-app:
+  esor-kali:
     image: esor-kali-vnc-ssh:latest
     tty: true
     container_name: esorone-kali-shh-vnc
     hostname: esor-kali
     ports:
-      - "22:22"
+      - "2222:22"
       - "5900:5900"
     networks:
       my-ntwk:
         ipv4_address: 172.17.0.4
-#    extra_hosts:
-#      - "f-db.info.my:172.20.0.6"
-#      - "p-app.info.my:172.20.0.7"
-#      - "p-db.info.my:172.20.0.8"
-#    depends_on:
-#      - f-db
-#      - p-app
-#      - p-db
+
