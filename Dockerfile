@@ -13,6 +13,7 @@ RUN apt update -q --fix-missing
 RUN apt-get install nano -y
 RUN apt-get install openssh-server sudo -y
 RUN apt-get install supervisor -y
+RUN sudo apt install net-tools -y
 
 
 # Configure SSH for password login
