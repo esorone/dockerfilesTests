@@ -8,7 +8,5 @@ services:
     ports:
       - "2222:22"
       - "5900:5900"
-    networks:
-      my-ntwk:
-        ipv4_address: 172.17.0.4
+ 
 
